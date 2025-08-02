@@ -652,6 +652,81 @@
 //   );
 // }
 
+// "use client";
+
+// import { useEffect } from "react";
+// import { Button } from "@/components/ui/button";
+// import { Heart } from "lucide-react";
+
+// // Define the questions as global context
+// const questions = [
+//   "What's your ideal living situation?",
+//   "How do you like to spend your free time?",
+//   "What's your daily routine like?",
+//   "How do you handle conflicts with roommates?",
+//   "What are your cleanliness preferences for shared spaces?",
+// ];
+
+// // Extend the global Window type (TypeScript fix)
+// declare global {
+//   interface Window {
+//     OmnidimensionWidget?: {
+//       open: () => void;
+//     };
+//     omnidim_questions?: string[];
+//   }
+// }
+
+// export default function FindAFriendStartPage() {
+//   useEffect(() => {
+//     const scriptId = "omnidimension-web-widget";
+
+//     // Inject Omnidimension widget script only once
+//     if (!document.getElementById(scriptId)) {
+//       const script = document.createElement("script");
+//       script.id = scriptId;
+//       script.async = true;
+//       script.src =
+//         "https://backend.omnidim.io/web_widget.js?secret_key=4acdcd7a77569c636de64cbff3e2ab0e";
+//       document.body.appendChild(script);
+//     }
+
+//     // Set global context for the voice agent
+//     window.omnidim_questions = questions;
+//   }, []);
+
+//   const handleStart = () => {
+//     if (window.OmnidimensionWidget?.open) {
+//       window.OmnidimensionWidget.open();
+//     } else {
+//       alert("Voice agent not loaded. Please wait a moment or refresh.");
+//     }
+//   };
+
+//   return (
+//     <div
+//       className="relative flex items-end justify-end w-full h-screen bg-no-repeat bg-cover bg-center"
+//       //style={{ backgroundImage: 'url("/background.jpg")' }}
+//       style={{
+//         backgroundImage: 'url("/background.jpg")',
+//         backgroundSize: "1500px 700px",
+//         backgroundColor: "black",// 🎯 Width x Height
+//       }}
+//     >
+//       <div className="m-6">
+//         {/* <Button
+//           onClick={handleStart}
+//           size="lg"
+//           className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white text-lg"
+//         >
+//           <Heart className="w-5 h-5 mr-2" />
+//           Start FindAFriend Test
+//         </Button> */}
+//       </div>
+//     </div>
+//   );
+// }
+
 "use client";
 
 import { useEffect } from "react";
@@ -681,17 +756,17 @@ export default function FindAFriendStartPage() {
   useEffect(() => {
     const scriptId = "omnidimension-web-widget";
 
-    // Inject Omnidimension widget script only once
+    // Inject updated Omnidimension widget script only once
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.id = scriptId;
       script.async = true;
       script.src =
-        "https://backend.omnidim.io/web_widget.js?secret_key=4acdcd7a77569c636de64cbff3e2ab0e";
+        "https://backend.omnidim.io/web_widget.js?secret_key=361e3981b914315017114222bb406ec9"; // ✅ Updated secret key
       document.body.appendChild(script);
     }
 
-    // Set global context for the voice agent
+    // Set global questions for widget
     window.omnidim_questions = questions;
   }, []);
 
@@ -706,11 +781,10 @@ export default function FindAFriendStartPage() {
   return (
     <div
       className="relative flex items-end justify-end w-full h-screen bg-no-repeat bg-cover bg-center"
-      //style={{ backgroundImage: 'url("/background.jpg")' }}
       style={{
         backgroundImage: 'url("/background.jpg")',
-        backgroundSize: "1500px 700px",
-        backgroundColor: "black",// 🎯 Width x Height
+        backgroundSize: "1800px 850px",
+        backgroundColor: "black",
       }}
     >
       <div className="m-6">
